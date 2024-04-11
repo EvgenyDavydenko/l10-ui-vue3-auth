@@ -14,6 +14,9 @@
                         </router-link>
                     </li>
                     <li>
+                        <a @click.prevent="logout" class="nav-link text-white" href="#">Выйти</a>
+                    </li>
+                    <li>
                         <router-link to="/register" class="nav-link text-white" style="text-decoration: none; color: white;">
                             Регистрация
                         </router-link>
@@ -31,7 +34,16 @@
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
-    name: 'App'
+        name: 'App',
+        methods: {
+            logout() {
+                axios.post('/logout').then(res => {
+                    this.$router.push({name: 'login'});
+                })
+            }
+            
+        }
     }
 </script>
