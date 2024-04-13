@@ -17,6 +17,26 @@ const router = createRouter({
     ]
 });
 
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token');
+
+    if(token) {
+        if (to.name === 'login' || to.name === 'register') {
+            return next({name: 'home'});
+        }
+    } 
+
+    if(!token) {
+        if (to.name === 'login' || to.name === 'register') {
+            return next();
+        } else {
+            return next({name: 'login'});
+        }
+    }
+
+    next();
+})
+
 const app = createApp(App);
 app.use(router);
 app.mount('#app');

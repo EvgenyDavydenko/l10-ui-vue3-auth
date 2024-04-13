@@ -16,3 +16,4 @@ npm run dev
 npm install vue-router --dev
 ```
 4.  SPA Auth using sanctum
+5.  workin with router

@@ -45,6 +45,7 @@ export default {
         saveForm(){
             axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.post('/register', this.form).then(r =>{
+                    localStorage.setItem('token', r.config.headers['X-XSRF-TOKEN']);
                     this.$router.push({name: 'home'});
                     console.log(r);
                 }).catch((error) =>{
